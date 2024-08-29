@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{circuitikz}
+\usepackage{siunitx}
+
+\begin{document}
+
+\begin{circuitikz}
+    % Define points
+    \coordinate (A) at (0,0);
+    \coordinate (B) at (2,0);
+    \coordinate (C) at (2,2.5);
+    \coordinate (D) at (6,2.5);
+    \coordinate (E) at (6,-0.5);
+    \coordinate (F) at (8,-0.5);
+    \coordinate (G) at (4.6,-0.5);
+    
+    \coordinate (I) at (3.3,0);
+
+    % Draw components and connections
+    \draw (A) to[R, l=$R$] (B)
+          (B) -- (C)
+          (C) to[D, l=$D$] (D)
+          (D) -- (E)
+          (B) -- (I);
+
+    \draw (E) -- (F);
+
+    \draw (G) node[op amp] (opamp) {};%G est le centre de OPA
+    \draw (I)--(opamp.-)
+          (opamp.+) -- ++(0,-1) node[ground] {};
+    \draw (opamp.out)--(E);
+
+    % Label points
+    \node[left] at (A) {$v_s$};
+    \node[right] at (F) {$v_e$};
+\end{circuitikz}
+
+\end{document}
+
